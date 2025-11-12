@@ -4,9 +4,8 @@
 # fi
 
 docker compose \
-  -f .services/compose/compose.kratos.yml \
-  -f .services/compose/compose.hydra.yml \
-  -f .services/compose/compose.oathkeeper.yml \
-  -f .services/compose/compose.ui.yml \
-  --project-directory . \
-  up -d --force-recreate --build
+  -f cfg/compose/compose.kratos.yml \
+  -f cfg/compose/compose.hydra.yml \
+  -f cfg/compose/compose.oathkeeper.yml \
+  -f cfg/compose/compose.ui.yml \
+  --project-directory . up -d --force-recreate --build

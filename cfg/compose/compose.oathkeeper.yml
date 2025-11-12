@@ -24,4 +24,4 @@ services:
     networks:
       - intranet
     volumes:
-      - ./ory/oathkeeper:/etc/config/oathkeeper
+      - ./cfg/ory/oathkeeper:/etc/config/oathkeeper

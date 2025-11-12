@@ -9,7 +9,7 @@ services:
         target: /var/lib/sqlite
         read_only: false
       - type: bind
-        source: ./ory/kratos
+        source: ./cfg/ory/kratos
         target: /etc/config/kratos
     command: -c /etc/config/kratos/kratos.yml migrate sql -e --yes
     restart: on-failure
@@ -50,7 +50,7 @@ services:
         target: /var/lib/sqlite
         read_only: false
       - type: bind
-        source: ./ory/kratos
+        source: ./cfg/ory/kratos
         target: /etc/config/kratos
     networks:
       - intranet

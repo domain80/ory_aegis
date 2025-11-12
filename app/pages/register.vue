@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+import { definePageMeta } from '#imports';
+import { FrontendApi, type RegistrationFlow } from '@ory/client';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import FlowRenderer from '~/components/FlowRenderer.vue';
 
 
 definePageMeta({
@@ -6,15 +11,16 @@ definePageMeta({
 })
 
 const route = useRoute();
+const ory = new FrontendApi(undefined, "http://127.0.0.1:4433")
+const flow = ref<RegistrationFlow>()
 
-
-async function getFlow() {
-  navigateTo("/api/register", { external: true })
-}
-
-// onMounted(async () => {
-//   await getFlow()
-// })
+onMounted(async () => {
+  const { data } = await ory.getRegistrationFlow(
+    { id: route.query.flow?.toString() ?? "" },
+    { withCredentials: true }
+  )
+  flow.value = data
+})
 
 </script>
 
@@ -25,12 +31,17 @@ async function getFlow() {
         <h3>Register</h3>
       </template>
 
-      <button @click="getFlow">flow</button>
+      <div class="register-page">
+        <h2>Sign Up</h2>
+        <FlowRenderer v-if="flow" :flow="flow" />
+      </div>
 
-      <pre class="w-full">{{ route.query }}</pre>
+
+      <pre v-if="flow">{{ flow }}</pre>
+
 
     </nuxt-layout>
-  </div>
+  </div>>
 </template>
 
 <style></style>

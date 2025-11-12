@@ -20,6 +20,12 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.1.17
         version: 4.1.17(vite@7.2.2(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.1))
+      axios:
+        specifier: ^1.13.2
+        version: 1.13.2
+      daisyui:
+        specifier: ^5.5.0
+        version: 5.5.0
       nuxt:
         specifier: ^4.2.1
         version: 4.2.1(@parcel/watcher@2.5.1)(@vue/compiler-sfc@3.5.24)(db0@0.3.4)(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(rollup@4.53.2)(terser@5.44.1)(vite@7.2.2(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.8.1))(yaml@2.8.1)
@@ -1556,6 +1562,9 @@ packages:
 
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
+
+  daisyui@5.5.0:
+    resolution: {integrity: sha512-lfeimNM3U1FzjfBotV3iTrxNfBEncHs7kMP62lTLghmO99v7HVZ/lbcOLr/y0Q3JB6Lx7XEi2yC5RQ8BBxdKPA==}
 
   db0@0.3.4:
     resolution: {integrity: sha512-RiXXi4WaNzPTHEOu8UPQKMooIbqOEyqA1t7Z6MsdxSCeb8iUC9ko3LcmsLmeUt2SM5bctfArZKkRQggKZz7JNw==}
@@ -4987,6 +4996,8 @@ snapshots:
       css-tree: 2.2.1
 
   csstype@3.1.3: {}
+
+  daisyui@5.5.0: {}
 
   db0@0.3.4: {}
 

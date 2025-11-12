@@ -11,7 +11,7 @@ services:
         target: /var/lib/sqlite
         read_only: false
       - type: bind
-        source: ./ory/hydra
+        source: ./cfg/ory/hydra
         target: /etc/config/hydra
     restart: on-failure
     networks:
@@ -30,7 +30,7 @@ services:
         target: /var/lib/sqlite
         read_only: false
       - type: bind
-        source: ./ory/hydra
+        source: ./cfg/ory/hydra
         target: /etc/config/hydra
     pull_policy: missing
     environment:
