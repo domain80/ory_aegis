@@ -3,12 +3,12 @@ services:
     environment:
       - SERVE_PUBLIC_BASE_URL=http://127.0.0.1:4455/kratos/public/
 
-  kratos-selfservice-ui-node:
-    environment:
-      - PORT=4435
-      - KRATOS_BROWSER_URL=http://127.0.0.1:4455/kratos/public
-      - JWKS_URL=http://oathkeeper:4456/.well-known/jwks.json
-      - SECURITY_MODE=jwks
+  # kratos-selfservice-ui-node:
+  #   environment:
+  #     - PORT=4435
+  #     - KRATOS_BROWSER_URL=http://127.0.0.1:4455/kratos/public
+  #     - JWKS_URL=http://oathkeeper:4456/.well-known/jwks.json
+  #     - SECURITY_MODE=jwks
 
   oathkeeper:
     image: oryd/oathkeeper:v0.40

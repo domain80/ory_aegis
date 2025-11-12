@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev  --dotenv .env.dev --host 0.0.0.0",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@ory/client": "^1.22.8",
+    "@ory/elements-markup": "^0.8.0",
+    "@ory/kratos-client": "^25.4.0",
     "@tailwindcss/vite": "^4.1.17",
     "nuxt": "^4.2.1",
     "tailwindcss": "^4.1.17",

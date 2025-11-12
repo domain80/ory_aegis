@@ -41,15 +41,15 @@ services:
     networks:
       - intranet
 
-  consent:
-    environment:
-      - HYDRA_ADMIN_URL=http://hydra:4445
-    image: oryd/hydra-login-consent-node:v2.2.0
-    ports:
-      - "3000:3000"
-    restart: unless-stopped
-    networks:
-      - intranet
+  # consent:
+  #   environment:
+  #     - HYDRA_ADMIN_URL=http://hydra:4445
+  #   image: oryd/hydra-login-consent-node:v2.2.0
+  #   ports:
+  #     - "3000:3000"
+  #   restart: unless-stopped
+  #   networks:
+  #     - intranet
 
 networks:
   intranet:

@@ -1,21 +1,34 @@
 <script lang="ts" setup>
 
+
 definePageMeta({
   layout: false
 })
 
-const res = await useFetch("http://localhost:4433/self-service/registration/browser", {
-  method: "POST",
-});
+const route = useRoute();
+
+
+async function getFlow() {
+  navigateTo("/api/register", { external: true })
+}
+
+// onMounted(async () => {
+//   await getFlow()
+// })
+
 </script>
 
 <template>
-  <div>
+  <div class="w-full ">
     <nuxt-layout name="default">
       <template #header>
-        <h3 class="text-2xl">Register</h3>
+        <h3>Register</h3>
       </template>
-      {{ res }}
+
+      <button @click="getFlow">flow</button>
+
+      <pre class="w-full">{{ route.query }}</pre>
+
     </nuxt-layout>
   </div>
 </template>

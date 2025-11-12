@@ -6,12 +6,12 @@ services:
     ports:
       - "5173:5173" 
     volumes:
-      - ./src:/app/src
+      - ./app:/app/app
+      - ./server:/app/server
       - ./public:/app/public
       - ./index.html:/app/index.html
       - ./tsconfig.json:/app/tsconfig.json
-      - ./vite.config.ts:/app/vite.config.ts
-      # - ./node_modules:/app/node-modules
+      - ./nuxt.config.ts:/app/nuxt.config.ts
     networks:
       - intranet
     depends_on:
