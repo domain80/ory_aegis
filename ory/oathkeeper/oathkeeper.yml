@@ -1,0 +1,144 @@
+log:
+  level: debug
+  format: json
+
+serve:
+  proxy:
+    cors:
+      enabled: true
+      allowed_origins:
+        - "*"
+      allowed_methods:
+        - POST
+        - GET
+        - PUT
+        - PATCH
+        - DELETE
+      allowed_headers:
+        - Authorization
+        - Content-Type
+      exposed_headers:
+        - Content-Type
+      allow_credentials: true
+      debug: true
+
+errors:
+  fallback:
+    - json
+
+  handlers:
+    redirect:
+      enabled: true
+      config:
+        to: http://127.0.0.1:4455/login
+        when:
+          - error:
+              - unauthorized
+              - forbidden
+            request:
+              header:
+                accept:
+                  - text/html
+    json:
+      enabled: true
+      config:
+        verbose: true
+
+access_rules:
+  matching_strategy: glob
+  repositories:
+    - file:///etc/config/oathkeeper/access-rules.yml
+
+authenticators:
+  jwt:
+    enabled: true
+    config:
+      jwks_urls:
+        - http://hydra:4444/.well-known/jwks.json
+      scope_strategy: exact
+  oauth2_introspection:
+    enabled: true
+    config:
+      introspection_url: http://hydra:4445/admin/oauth2/introspect
+      scope_strategy: hierarchic
+      retry:
+        give_up_after: 0ns
+        max_delay: 0ns
+      cache:
+        enabled: true
+        ttl: 5s
+        max_cost: -100000000
+
+  cookie_session:
+    enabled: true
+    config:
+      check_session_url: http://kratos:4433/sessions/whoami
+      preserve_path: true
+      extra_from: "@this"
+      subject_from: "identity.id"
+      only:
+        - ory_kratos_session
+
+  oauth2_client_credentials:
+    enabled: true
+    config:
+      token_url: https://hydra:4445/admin/oauth2/token
+      retry:
+        give_up_after: 0ns
+        max_delay: 0ns
+      cache:
+        enabled: true
+        ttl: 5s
+        max_tokens: -100000000
+
+  anonymous:
+    enabled: true
+    config:
+      subject: guest
+
+  noop:
+    enabled: true
+
+authorizers:
+  allow:
+    enabled: true
+
+mutators:
+  header: 
+    enabled: true
+    config: 
+      headers:
+        X-User-Sub: "{{ print .Subject }}"
+        # X-User-Email: "{{ print .Subject.email }}"
+        # X-User-Given-Name: "{{ print .Subject.given_name }}"
+        # X-User-Family-Name: "{{ print .Subject.family_name }}"
+        # X-User-Picture: "{{ print .Subject.picture }}"
+  hydrator:
+    enabled: true
+    config:
+      api:
+        url: http://kratos:4434/admin/identities/{{ print .Subject }}
+        retry:
+          give_up_after: 0ns
+          max_delay: 0ns
+      cache:
+        enabled: true
+        ttl: 10s
+  noop:
+    enabled: true
+  id_token:
+    enabled: true
+    config:
+      issuer_url: http://127.0.0.1:4455/
+      jwks_url: file:///etc/config/oathkeeper/id_token.jwks.json
+
+tracing:
+  provider: jaeger
+  service_name: Ory Hydra
+  deployment_environment: development
+  providers:
+    jaeger:
+      local_agent_address: 127.0.0.1:6831
+      sampling:
+        server_url: http://localhost:5778/sampling
+        trace_id_ratio: 0.5

@@ -1,0 +1,19 @@
+services:
+  ui:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173" 
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./vite.config.ts:/app/vite.config.ts
+      # - ./node_modules:/app/node-modules
+    networks:
+      - intranet
+    depends_on:
+      - kratos
+      - hydra

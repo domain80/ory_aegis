@@ -1,0 +1,29 @@
+serve:
+  cookies:
+    same_site_mode: Lax
+
+urls:
+  self:
+    issuer: https://127.0.0.1:4444
+  consent: https://127.0.0.1:4455/consent
+  login: https://127.0.0.1:4455/login
+  logout: https://127.0.0.1:4455/logout
+  post_logout_redirect: https://127.0.0.1:4455/logout
+
+strategies:
+  scope: exact
+  access_token: opaque
+  jwt:
+    scope_claim: list
+
+# set from env
+secrets:
+  system:
+    - youReallyNeedToChangeThis
+
+oidc:
+  subject_identifiers:
+    supported_types:
+      - public
+    pairwise:
+      salt: youReallyNeedToChangeThis
