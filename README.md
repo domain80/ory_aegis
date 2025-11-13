@@ -15,3 +15,11 @@ The UI can be fully styled and customized to fit any designs or usecases (browse
 
 ## Roadmap 
 -[ ] Handle Consent flows and JWT customization for hydra
+
+
+## Getting Started:
+NB: the entire app and all other services (ory) run in docker.  
+You will therefore need docker installed before proceeding
+1. setup the env file in the root of the project according to the `.env.example` file
+2. run `chmod +x ./setup.sh` to make the setup command executable
+3. run `./setup.sh` to start the whole app and all the ory services
