@@ -1,12 +1,12 @@
-import type {
-    UiNode,
-    UiNodeAnchorAttributes,
-    UiNodeAttributes,
-    UiNodeDivisionAttributes,
-    UiNodeImageAttributes,
-    UiNodeInputAttributes,
-    UiNodeScriptAttributes,
-    UiNodeTextAttributes,
+import {
+    FrontendApi, type UiNode,
+    type UiNodeAnchorAttributes,
+    type UiNodeAttributes,
+    type UiNodeDivisionAttributes,
+    type UiNodeImageAttributes,
+    type UiNodeInputAttributes,
+    type UiNodeScriptAttributes,
+    type UiNodeTextAttributes
 } from '@ory/client'
 import { h, type VNode } from 'vue'
 
@@ -53,9 +53,32 @@ export function parseNode(node: UiNode): VNode {
     const label = node.meta?.label?.text
     const messages = node.messages?.map((m) => m.text).join(', ') || ''
 
+
     if (isInputNode(attr)) {
-        return h('div', { class: 'ory-node ory-node--input' }, [
-            label ? h('label', { for: attr.name }, label) : null,
+        if (attr.type == "submit") {
+            return h('fieldset',
+                { class: "fieldset gap-1 ory-node ory-node--btn w-full my-4" }, [
+                h('button', {
+                    id: attr.name,
+                    name: attr.name,
+                    type: attr.type,
+                    value: attr.value,
+                    autocomplete: attr.autocomplete,
+                    required: attr.required,
+                    disabled: attr.disabled,
+                    class: "btn btn-neutral btn-md w-full "
+                }, [
+                    h("span", {}, node.meta.label?.text)
+                ]
+                ),
+                messages ? h('small', { class: 'ory-node-message' }, messages) : null,
+            ]
+            )
+        }
+
+
+        return h('fieldset', { class: 'fieldset ory-node ory-node--input' }, [
+            label ? h('legend', { for: attr.name, class: "fieldset-legend py-1" }, label) : null,
             h('input', {
                 id: attr.name,
                 name: attr.name,
@@ -64,6 +87,7 @@ export function parseNode(node: UiNode): VNode {
                 autocomplete: attr.autocomplete,
                 required: attr.required,
                 disabled: attr.disabled,
+                class: "input input-sm w-full"
             }),
             messages ? h('small', { class: 'ory-node-message' }, messages) : null,
         ])
@@ -109,3 +133,6 @@ export function parseFlow(nodes?: UiNode[]): VNode[] {
     if (!nodes) return []
     return nodes.map((node) => parseNode(node))
 }
+
+// ----------- Ory Kratos Frontend API Client -------------
+export const kratosClient = new FrontendApi(undefined, "http://127.0.0.1:4433")

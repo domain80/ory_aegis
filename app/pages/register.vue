@@ -1,21 +1,20 @@
 <script lang="ts" setup>
-import { definePageMeta } from '#imports';
-import { FrontendApi, type RegistrationFlow } from '@ory/client';
+import { setPageLayout } from '#imports';
+import { type RegistrationFlow } from '@ory/client';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import FlowRenderer from '~/components/FlowRenderer.vue';
+import { kratosClient } from '~/components/lib/kratos';
+import { usePageTitle } from '~/composables/usePageTitle';
 
-
-definePageMeta({
-  layout: false
-})
 
 const route = useRoute();
-const ory = new FrontendApi(undefined, "http://127.0.0.1:4433")
 const flow = ref<RegistrationFlow>()
 
+usePageTitle("Register")
+setPageLayout('auth')
 onMounted(async () => {
-  const { data } = await ory.getRegistrationFlow(
+  const { data } = await kratosClient.getRegistrationFlow(
     { id: route.query.flow?.toString() ?? "" },
     { withCredentials: true }
   )
@@ -25,23 +24,19 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-full ">
-    <nuxt-layout name="default">
-      <template #header>
-        <h3>Register</h3>
-      </template>
+  <div class=" ">
 
-      <div class="register-page">
-        <h2>Sign Up</h2>
-        <FlowRenderer v-if="flow" :flow="flow" />
-      </div>
+    <header class="max-w-sm">
+      <h4 class="text-2xl font-semibold">Sign Up <span class="lg:hidden ">with
+          Aegis</span></h4>
+      <p class="text-neutral-600 mb-4 mt-1 line-clamp-2 overflow-clip ">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, eveniet. Repellat
+      </p>
+    </header>
+    <FlowRenderer v-if="flow" :flow="flow" />
 
+  </div>
 
-      <pre v-if="flow">{{ flow }}</pre>
-
-
-    </nuxt-layout>
-  </div>>
 </template>
 
 <style></style>

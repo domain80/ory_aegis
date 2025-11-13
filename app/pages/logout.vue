@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-import { navigateTo } from '#imports';
-import { FrontendApi } from '@ory/client';
+import { navigateTo, useHead } from '#imports';
 import { onMounted } from 'vue';
+import { kratosClient } from '~/components/lib/kratos';
 
-const ory = new FrontendApi(undefined, "http://127.0.0.1:4433")
+useHead({ title: "Logout", })
+
 onMounted(() => {
-  ory.createBrowserLogoutFlow({}, { withCredentials: true }).then((data) => {
-    ory.updateLogoutFlow({ token: data.data.logout_token }, { withCredentials: true }).then((data) => {
-      navigateTo({ name: "index" })
+  kratosClient.createBrowserLogoutFlow({}, { withCredentials: true }).then((data) => {
+    kratosClient.updateLogoutFlow({ token: data.data.logout_token }, { withCredentials: true }).then(() => {
+      navigateTo({ name: "index", replace: true })
     })
   })
 })
