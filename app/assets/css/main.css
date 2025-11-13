@@ -1,12 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-@layer theme {
-    body {
-        font-family: "Ioskeley Mono";
-    }
-
-    .font-brand {}
+body {
+    font-family: "Ioskeley Mono";
 }
 
 .comic {

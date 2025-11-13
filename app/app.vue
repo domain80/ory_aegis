@@ -6,7 +6,7 @@ useHead({ titleTemplate: "%s | Aegis" })
 
 <template>
   <div>
-    <NuxtLayout>
+    <NuxtLayout name="auth">
       <NuxtPage />
     </NuxtLayout>
   </div>

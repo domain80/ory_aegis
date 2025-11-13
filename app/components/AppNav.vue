@@ -9,7 +9,7 @@ const logoutUrl = new URL("http://127.0.0.1:4433/self-service/logout/browser");
 <template>
     <div class="flex gap-6 justify-between w-full">
         <div class="flex gap-6 py-4 items-center justify-start">
-            <NuxtLink :to="{ name: 'index' }">Home</NuxtLink>
+            <!-- <NuxtLink :to="{ name: 'index' }">Home</NuxtLink> -->
             <NuxtLink :to="{ path: loginUrl.toString(), }" :external="true">Login
             </NuxtLink>
             <a :href="registrationUrl.toString()">Register</a>

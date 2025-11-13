@@ -26,7 +26,10 @@ onMounted(async () => {
       <span class="comic text-gray-500 mr-2 line-through ">am I</span>
       <span>are You </span>
     </h3>
-    <pre v-if="error">{{ error }}</pre>
-    <pre v-if="session" class="">{{ session }}</pre>
+    <section
+      class="w-full overflow-scroll max-w-3xl max-h-140 shadow mt-8 rounded border border-gray-200 p-4 ">
+      <pre v-if="error">{{ error }}</pre>
+      <pre v-if="session" class="">{{ session }}</pre>
+    </section>
   </div>
 </template>

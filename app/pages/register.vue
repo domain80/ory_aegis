@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { setPageLayout } from '#imports';
 import { type RegistrationFlow } from '@ory/client';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -12,7 +11,6 @@ const route = useRoute();
 const flow = ref<RegistrationFlow>()
 
 usePageTitle("Register")
-setPageLayout('auth')
 onMounted(async () => {
   const { data } = await kratosClient.getRegistrationFlow(
     { id: route.query.flow?.toString() ?? "" },

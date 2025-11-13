@@ -1,75 +1,17 @@
-# Nuxt Minimal Starter
+# Aegis
+A self service UI implementation for Ory kratos and Ory hydra.  
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+The UI supports both passowrd flows and OIDC flows.  
+It also works with any kratos configuration for the two flows specified irrespective of the 
+provider or the number of fields
 
-## Setup
+The UI can be fully styled and customized to fit any designs or usecases (browser flow or AJAX flow)
 
-Make sure to install dependencies:
+## Features
+- User registration and login via browser flows
+- Social login (Google) | others can be added via kratos configs
+- Whoami / current session
+- User logout
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Roadmap 
+-[ ] Handle Consent flows and JWT customization for hydra
