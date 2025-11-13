@@ -1,5 +1,5 @@
 # Aegis
-A self service UI implementation for Ory kratos and Ory hydra.  
+A self service UI implementation for self-hosted Ory kratos and Ory hydra services.  
 
 The UI supports both passowrd flows and OIDC flows.  
 It also works with any kratos configuration for the two flows specified irrespective of the 
